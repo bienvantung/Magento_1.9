@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Smartosc
+ *
+ */
+-->
+<config>
+    <modules>
+        <Smartosc_ProductWishlist>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Smartosc_ProductWishlist>
+    </modules>
+</config>

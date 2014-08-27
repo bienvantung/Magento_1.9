@@ -1,0 +1,69 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$cache = Mage::app()->getCacheInstance();
+$cache->banUse('full_page');
+$cart = Mage::getModel('checkout/cart')->getQuote();
+?>
+<table class="data-table" id="wishlist-table">
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Wishlist Guest'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php if(Mage::getSingleton('core/session')->getWishListGuest()!='' && count(explode(',',Mage::getSingleton('core/session')->getWishListGuest()))>0):?>
+        <?php
+            $_helper = $this->helper('catalog/output');
+            $_productIds = explode(',',Mage::getSingleton('core/session')->getWishListGuest());
+        ?>
+        <?php if(count($_productIds)): ?>
+            <?php $i=0; ?>
+            <?php foreach ($_productIds as $item): ?>
+                <?php $_product = Mage::getModel('catalog/product')->load($item);?>
+                <tr id="item_<?php echo $_product->getId();?>">
+                    <td>
+                        <a id="<?php echo $_product->getId() ?>" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                            <img class="first-image" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(242, 400); ?>" width="242" height="400" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                        </a>
+                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getName(); ?>"><?php echo $_product->getName(); ?></a></h2>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+                <tr>
+                    <td colspan="<?php echo count($columns);?>" class="wishlist-empty"><?php echo $this->__('This Wishlist has no Items');?></td>
+                </tr>
+        <?php endif; ?>
+    <?php endif; ?>
+    </tbody>
+</table>
+<script type="text/javascript">
+    //<![CDATA[
+    decorateTable('wishlist-table');
+    //]]>
+</script>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Smartosc_ProductWishlist>
+            <version>0.0.1</version>
+        </Smartosc_ProductWishlist>
+    </modules>
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <smartosc_productwishlist before="Mage_Customer">Smartosc_ProductWishlist</smartosc_productwishlist>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
+</config>
