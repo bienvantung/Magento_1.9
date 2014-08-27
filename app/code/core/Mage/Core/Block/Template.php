@@ -63,8 +63,8 @@ class Mage_Core_Block_Template extends Mage_Core_Block_Abstract
      */
     protected $_allowSymlinks = null;
 
-    protected static $_showTemplateHints =0;
-    protected static $_showTemplateHintsBlocks =0;
+    protected static $_showTemplateHints;
+    protected static $_showTemplateHintsBlocks;
 
 //    protected static $_showTemplateHints = 1;
 //    protected static $_showTemplateHintsBlocks = 1;
