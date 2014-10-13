@@ -71,11 +71,15 @@ Category default layout
 -->
 
     <catalog_category_default translate="label">
+        <reference name="product_list">
+            <action method="setTemplate"><template>magpassion_quickview/quickview/catalog/product/list.phtml</template></action>
+        </reference>
         <label>Catalog Category (Non-Anchor)</label>
         <reference name="left">
             <block type="catalog/navigation" name="catalog.leftnav" after="currency" template="catalog/navigation/left.phtml"/>
         </reference>
         <reference name="content">
+            <action method="setTemplate"><template>magpassion_quickview/quickview/catalog/product/list.phtml</template></action>
             <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
                 <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
